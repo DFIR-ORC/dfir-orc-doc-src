@@ -10,7 +10,7 @@ To install an environment in which you can build the doc (works on Windows and L
 
     pip install sphinx
     pip install solar-theme
-    git clone git@github.com:DFIR-ORC/dfir-orc-doc-src.github.io.git
+    git clone git@github.com:DFIR-ORC/dfir-orc-doc-src.git
     cd dfir-orc-doc-src/docs
     make html
 
