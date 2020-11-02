@@ -1,0 +1,31 @@
+trigger:
+  - master
+
+stages:
+  - stage: Build
+    jobs:
+    - job: vs2019_build
+      pool:
+        vmImage: 'windows-2019'
+      steps:
+      - checkout: self
+        clean: true
+        submodules: true
+      - task: PowerShell@2
+        inputs:
+          targetType: 'inline'
+          script: |
+            pip install sphinx
+            pip install solar-theme
+            . docs\make.bat html
+
+      - task: CopyFiles@2
+        inputs:
+          sourceFolder: '$(Build.SourcesDirectory)/docs/build/html'
+          contents: '**'
+          TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+      - task: PublishBuildArtifacts@1
+        inputs:
+          pathtoPublish: $(Build.ArtifactStagingDirectory)
+          artifactName: dfir-orc.github.io
