@@ -2,7 +2,9 @@
 Configuring Console Output, Logging
 ===================================
 
-Some log output is available with different verbosity levels. It can be shown in the console or into a file. Both levels are independent.
+Multiple log output are available and they can be use simultaneously. Existing output are console, file and limited syslog.
+
+**Syslog use is currently limited to WolfLauncher high level logs**.
 
 Usage
 =====
@@ -26,17 +28,19 @@ The log message are passing through "sinks" like 'console' or 'file'. To configu
 
 ``level`` Attribute, ``/log:console,level=<Level>,...`` Option
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Log level is one of 'trace', 'debug', 'info' 'error', 'warning', 'critical'.
 
-Default: critical.
+*optional=yes, default=critical*, `parent element: console`
+
+Log level is one of 'trace', 'debug', 'info' 'error', 'warning', 'critical'.
 
 ``backtrace`` Attribute, ``/log:console,backtrace=<Level>,...`` Option
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*optional=yes, default=off*, `parent element: console`
+
 Specify a log level which will trigger a log backtrace which will contain logs up to level 'debug'.
 
 Value is one of 'trace', 'debug', 'info' 'error', 'warning', 'critical', off.
-
-Default: 'off'.
 
 ``File`` sink element, ``/log:file,...`` Option
 ------------------------------------------------
@@ -48,17 +52,20 @@ This implies that tool progress cannot be followed from log file using "tail
 
 ``level`` Attribute, ``/log:file,level=<Level>,...`` Option
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Log level is one of 'trace', 'debug', 'info' 'error', 'warning', 'critical'.
 
-Default: 'info'.
+*optional=yes, default=info*, `parent element: file`
+
+Log level is one of 'trace', 'debug', 'info' 'error', 'warning', 'critical'.
 
 ``backtrace`` Attribute, ``/log:file,backtrace=<Level>,...`` Option
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*optional=yes, default=error*, `parent element: file`
+
 Specify a log level which will trigger a log backtrace which will contain logs up to level 'debug'.
 
 Value is one of 'trace', 'debug', 'info' 'error', 'warning', 'critical', off.
 
-Default: 'error'.
 
 ``output`` Element, ``/log:file,output=Path>,...`` Option
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -66,6 +73,45 @@ Default: 'error'.
 *optional=yes, default=N/A*, `parent element: file`
 
 Path to the log file. Patterns are supported as with archive element (cf `archive element <#the-archive-element>`_).
+
+``Syslog`` sink element, ``/log:syslog,...`` Option
+----------------------------------------------------
+
+*optional=yes, default=N/A*, `parent element: log`
+
+Redirect high level logs to a syslog server.
+
+**Currently 'syslog' use is restricted to WolfLauncher**.
+
+``level`` Attribute, ``/log:syslog,level=<Level>,...`` Option
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*optional=yes, default=info*, `parent element: syslog`
+
+Log level is one of 'trace', 'debug', 'info' 'error', 'warning', 'critical'.
+
+``backtrace`` Attribute, ``/log:syslog,backtrace=<Level>,...`` Option
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*optional=yes, default=off*, `parent element: syslog`
+
+Specify a log level which will trigger a log backtrace which will contain logs up to level 'debug'.
+
+Value is one of 'trace', 'debug', 'info' 'error', 'warning', 'critical', off.
+
+``host`` Attribute, ``/log:syslog,host=<ip4_or_ip6>,...`` Option
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*optional=no, default=N/A*, `parent element: syslog`
+
+Address of the syslog server
+
+``port`` Attribute, ``/log:syslog,port=<port>,...`` Option
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+*optional=yes, default=514*, `parent element: syslog`
+
+Port of the syslog server.
 
 Example
 --------
@@ -77,11 +123,18 @@ Example
         <file level="error" backtrace="error">
             <output disposition="truncate">ORC_{SystemType}_{FullComputerName}_{TimeStamp}.dev.log</output>
         </file>
+        <syslog>
+            <host>127.0.0.1</host>
+            <port>514</port>
+        </syslog>
     </log>
 
 .. code:: bat
 
-    dfir-orc.exe /log:console,level=critical,backtrace=off /log:file,level=debug,backtrace=error,output="dfir-orc.log" ...
+    dfir-orc.exe \
+        /log:console,level=critical,backtrace=off \
+        /log:file,level=debug,backtrace=error,output="dfir-orc.log" \
+        /log:syslog,host=127.0.0.1,port=514 ...
 
 `Back to Root <#anchor-root>`_
 
