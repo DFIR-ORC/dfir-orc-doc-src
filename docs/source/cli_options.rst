@@ -271,7 +271,7 @@ This option overrides the ``powerstate`` attribute of the :ref:`dfir-orc element
 ``/NoLimits[:<Keyword1>,<Keyword2>,...]`` Option
 ------------------------------------------------
 
-Overrides the safety limits configuration when collecting with ``GetThis`` and ``GetSamples`` subcommands. The option ``/nolimits`` with no value means that ALL configurated commands will have no output size limits. BEWARE: this could starve very easily storage.
+Overrides the safety limits configuration when collecting with ``GetThis`` and ``GetSamples`` subcommands. The option ``/nolimits`` with no value means that ALL configurated commands will have no output size limits. BEWARE: this could easily use all available storage space.
 
 It should be used with specific commands specified with ``/Key=<Keyword>`` (see available list with ``/Keys``).
 
