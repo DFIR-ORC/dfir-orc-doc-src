@@ -273,22 +273,22 @@ This option overrides the ``powerstate`` attribute of the :ref:`dfir-orc element
 
 Overrides the safety limits configuration when collecting with ``GetThis`` and ``GetSamples`` subcommands.
 
-The option ``/nolimits`` with no value means that ALL configurated commands will have no output size limits. BEWARE: this could easily use all available storage space. As such, it is recommanded to target specific overrides by indicating one or more commands (see available list with :ref:`/Keys <_cli_options-keys>`).
+The option ``/nolimits`` with no value means that ALL configurated commands will have no output size limits. BEWARE: this could easily use all available storage space. As such, it is recommanded to target specific overrides by indicating one or more commands (see available list with ``/Keys`` option).
 
 For example:
-1. Execute every commands but overrrides limits for ``GetFoo`` and ``GetBar``:
+1. Execute the configured DFIR-ORC but overrides limits for ``GetFoo`` and ``GetBar`` commands:
 
 .. code:: bat
 
-    orc.exe /nolimits:GetFoo,GetBar ...
+    dfir-orc.exe /nolimits:GetFoo,GetBar ...
 
 
 2. Only execute ``GetFoo`` and overrides limits for this command:
 
 .. code:: bat
 
-    orc.exe /key=GetFoo /nolimits ...
-    orc.exe /key=GetFoo /nolimits:GetFoo ...
+    dfir-orc.exe /key=GetFoo /nolimits
+    dfir-orc.exe /key=GetFoo /nolimits:GetFoo
 
 Mothership Specific Command-line Options
 ----------------------------------------
