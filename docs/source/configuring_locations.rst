@@ -249,6 +249,12 @@ The wildcard ``*`` is also supported:
 
     <location shadows="yes">*</location>
 
+It is also possible to select 'earliest', 'latest', 'middest' or specific GUID of a shadow copy:
+
+.. code:: xml
+
+    <location shadows="latest,earliest,{04c16363-68ec-4f94-a956-abd80375c89f}">*</location>
+
 The ``/shadows`` option can also be used on command lines and applies to all mounted volumes otherwise selected.
 
 
@@ -384,4 +390,26 @@ For more information, please refer to `the reference page for KnownLocations <ht
 ``shadows`` Attribute, ``/shadows`` Option
 ------------------------------------------
 
-This option allows automatic parsing of the shadow copies on mounted volumes only. It is explained :ref:`above <configuring_locations-automatic shadow>`.
+This option enable the processing of the shadow copy volumes from all the specified ``location``. Multiple of the following values can be assigned:
+
+* ``no`` (default): Disable every volume shadow copy processing.
+* ``yes``: enable every volume shadow copy processing.
+* ``<empty>`` (shadows without value): Same as ``yes``.
+* ``earliest``: process eldest volume shadow copy.
+* ``middest``: process the "mid-N" volume shadow copy between the earliest and the latest.
+* ``latest``: process only the most recent volume shadow copy.
+* ``GUID``: process only the volume shadow copy with the specified GUID (Shadow Copy ID given by ``vssadmin list shadows``).
+
+Example enabling the processing of the earliest and latest volume shadow copy:
+
+.. code:: bat
+
+    /Shadows=earliest,latest
+
+or via the ``shadows`` attribute of the ``location`` element:
+
+.. code:: xml
+
+    <location shadows="earliest,latest">*</location>
+
+See also :ref:`above <configuring_locations-automatic shadow>`.
