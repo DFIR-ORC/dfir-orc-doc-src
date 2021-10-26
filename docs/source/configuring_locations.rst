@@ -432,7 +432,7 @@ Example processing only volume shadow copy from the system drive but not the mou
 
 .. code:: xml
 
-    <location exclude="%SYSTEMROOT%" shadows="yes">%SYSTEMROOT%</location>
+    <location exclude="%SYSTEMDRIVE%" shadows="yes">%SYSTEMDRIVE%</location>
 
 Finally a XML configuration can be overloaded using the command line to remove exclusion:
 
