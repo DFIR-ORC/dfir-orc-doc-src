@@ -387,6 +387,8 @@ For more information, please refer to `the reference page for KnownLocations <ht
     
     Known locations cannot be used as a ``location`` value.
 
+.. _configuring_locations-shadows:
+
 ``shadows`` Attribute, ``/shadows`` Option
 ------------------------------------------
 
@@ -413,3 +415,34 @@ or via the ``shadows`` attribute of the ``location`` element:
     <location shadows="oldest,newest">*</location>
 
 See also :ref:`above <configuring_locations-automatic shadow>`.
+
+.. _configuring_locations-exclude:
+
+``exclude`` Attribute, ``/Exclude="<DriveList>"`` Option
+--------------------------------------------------------
+Specify volume(s) to exclude from any processing. This can be particularly helpful when ``location`` value is wildcard '*'. It is also possible to exclude a "normal" volume when only its shadow copy volumes must be processed.
+
+Example processing all volumes but the 'D':
+
+.. code:: xml
+
+    <location exclude="D:">*</location>
+
+Example processing only volume shadow copy from the system drive but not the mounted volume itself:
+
+.. code:: xml
+
+    <location exclude="%SYSTEMROOT%" shadows="yes">%SYSTEMROOT%</location>
+
+Finally a XML configuration can be overloaded using the command line to remove exclusion:
+
+.. code:: bat
+
+    /Exclude=""
+
+Or specify another one:
+
+.. code:: bat
+
+    /Exclude="C:"
+
