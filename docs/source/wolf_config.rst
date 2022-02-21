@@ -137,6 +137,11 @@ Example
         <output>ORC_{SystemType}_{FullComputerName}_{TimeStamp}.log</output>
     </console>
 
+.. code:: bat
+
+        .\DFIR-Orc.exe /console:output=ORC_W7_COMPUTER_1010.log
+
+
 `Back to Root <#anchor-root>`_
 
 
