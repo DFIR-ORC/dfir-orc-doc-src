@@ -19,13 +19,13 @@ It is not a usable configuration, in the sense that it does not contain any attr
 Its point is to be exhaustive from the point of view of existing usable elements.
 
 | <`dfir-orc <#dfir-orc-element>`_ *attributes="..."*>
-|      <`temporary <#temporary-element>`_> *value* <`/temporary <#temporary-element>`_>
-|      <`output <#output-element>`_> *value* <`/output <#output-element>`_>
+|      <`temporary <#temporary-element>`_>\ *value*\ <`/temporary <#temporary-element>`_>
+|      <`output <#output-element>`_>\ *value*\ <`/output <#output-element>`_>
 |      <`upload <#upload-element>`_ *attributes="..."* />
-|      <`recipient <#recipient-element>`_ *attributes="..."*> *value* <`/recipient <#recipient-element>`_>
-|      <`key <#key-element>`_> *value*  <`/key <#key-element>`_>
-|      <`enable_key <#enable-key-and-disable-key-elements>`_> *value* <`/enable_key <#enable-key-and-disable-key-elements>`_>
-|      <`disable_key <#enable-key-and-disable-key-elements>`_> *value* <`/disable_key <#enable-key-and-disable-key-elements>`_>
+|      <`recipient <#recipient-element>`_ *attributes="..."*>\ *value*\ <`/recipient <#recipient-element>`_>
+|      <`key <#key-element>`_>\ *value*\ <`/key <#key-element>`_>
+|      <`enable_key <#enable-key-and-disable-key-elements>`_>\ *value*\ <`/enable_key <#enable-key-and-disable-key-elements>`_>
+|      <`disable_key <#enable-key-and-disable-key-elements>`_>\ *value*\ <`/disable_key <#enable-key-and-disable-key-elements>`_>
 | <`/dfir-orc <#dfir-orc-element>`_>
 
 .. _orc_local_config-dfir-orc-element:
