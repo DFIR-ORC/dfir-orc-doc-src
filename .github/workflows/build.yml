@@ -10,14 +10,22 @@ jobs:
   build:
     runs-on: windows-2019
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: Build
         shell: pwsh
         run: |
           pip install sphinx
           pip install solar-theme
           .\docs\make.bat html
-      - name: Publish
+      - name: Create archive artifact
+        shell: pwsh
+        run: Copy-Item -Recurse .\docs\build\html .\docs\build\dfir-orc-doc
+      - name: Upload archive artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: dfir-orc-doc.zip
+          path: .\docs\build\dfir-orc-doc
+      - name: Publish html pages
         if: github.ref == 'refs/heads/master'
         shell: pwsh
         env:
