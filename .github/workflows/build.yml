@@ -20,8 +20,8 @@ jobs:
       - name: Archive
         shell: pwsh
         run: |
-          Rename-Item .\docs\build\html .\docs\build\dfir-orc-doc
-          Compress-Archive .\docs\build\dfir-orc-doc .\dfir-orc-doc.zip
+          Rename-Item docs\build\html docs\build\dfir-orc-doc
+          Compress-Archive docs\build\dfir-orc-doc dfir-orc-doc.zip
       - name: Upload archive
         uses: actions/upload-artifact@v3
         with:
