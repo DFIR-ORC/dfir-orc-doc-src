@@ -17,6 +17,15 @@ jobs:
           pip install sphinx
           pip install solar-theme
           .\docs\make.bat html
+      - name: Archive
+        shell: pwsh
+        run: |
+          Rename-Item .\docs\build\html .\docs\build\dfir-orc-doc
+          Compress-Archive .\docs\build\dfir-orc-doc .\dfir-orc-doc.zip
+      - name: Upload archive
+        uses: actions/upload-artifact@v3
+        with:
+          path: ${{ runner.temp }}/dfir-orc-doc.zip
       - name: Publish
         if: github.ref == 'refs/heads/master'
         shell: pwsh
