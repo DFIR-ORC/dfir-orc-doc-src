@@ -21,13 +21,13 @@ jobs:
         shell: pwsh
         run: |
           Copy-Item -Recurse .\docs\build\html .\docs\build\dfir-orc-doc
-          Select-Location .\docs\build
+          Set-Location .\docs\build
           Compress-Archive dfir-orc-doc dfir-orc-doc.zip
       - name: Upload archive
         uses: actions/upload-artifact@v3
         with:
           path: ${{ runner.temp }}/dfir-orc-doc.zip
-      - name: Publish
+      - name: Publish html pages
         if: github.ref == 'refs/heads/master'
         shell: pwsh
         env:
