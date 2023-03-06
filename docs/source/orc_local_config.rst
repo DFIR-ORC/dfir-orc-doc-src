@@ -26,7 +26,7 @@ Its point is to be exhaustive from the point of view of existing usable elements
 |      <`key <#key-element>`_> *value*  <`/key <#key-element>`_>
 |      <`enable_key <#enable-key-and-disable-key-elements>`_> *value* <`/enable_key <#enable-key-and-disable-key-elements>`_>
 |      <`disable_key <#enable-key-and-disable-key-elements>`_> *value* <`/disable_key <#enable-key-and-disable-key-elements>`_>
-|      <`log <#log-elements>`_ *attributes="..."> *value* <`/log <#log-elements>`_>
+|      <`log <#log-element>`_ *attributes="..."> *value* <`/log <#log-element>`_>
 | <`/dfir-orc <#dfir-orc-element>`_>
 
 .. _orc_local_config-dfir-orc-element:
@@ -263,12 +263,12 @@ Example
 `Back to Root <#anchor-root>`_
 
 
-.. _orc_local_config-log-elements:
+.. _orc_local_config-log-element:
 
 ``log`` Element
 ===============
 
-*optional=yes, default=N/A*, `parent element: wolf <#wolf-element>`_
+*optional=yes, default=N/A*, `parent element: dfir-orc <#dfir-orc-element>`_
 
 The log element can be used to create an optional log file of DFIR ORC execution. This file will be uploaded if an <upload/> element is specified in a :doc:`DFIR ORC local configuration file <orc_local_config>`.
 
