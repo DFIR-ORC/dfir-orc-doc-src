@@ -25,7 +25,13 @@ if errorlevel 9009 (
 	exit /b 1
 )
 
+if "%1" == "singlehtml" goto singlehtml
+
 %SPHINXBUILD% -M %1 %SOURCEDIR% %BUILDDIR% %SPHINXOPTS% %O%
+goto end
+
+:singlehtml
+%SPHINXBUILD% -b singlehtml %SOURCEDIR% %BUILDDIR%-singlehtml
 goto end
 
 :help
