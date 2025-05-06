@@ -17,6 +17,7 @@ jobs:
           pip install sphinx
           pip install solar-theme
           .\docs\make.bat html
+          .\docs\make.bat singlehtml
       - name: Create archive artifact
         shell: pwsh
         run: Copy-Item -Recurse .\docs\build\html .\docs\build\dfir-orc-doc
@@ -25,6 +26,14 @@ jobs:
         with:
           name: dfir-orc-doc.zip
           path: .\docs\build\dfir-orc-doc
+      - name: Create archive singlehtml artifact
+        shell: pwsh
+        run: Copy-Item -Recurse .\docs\build-singlehtml .\docs\build\dfir-orc-doc-singlehtml
+      - name: Upload singlehtml archive artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dfir-orc-doc-singlehtml.zip
+          path: .\docs\build\dfir-orc-doc-singlehtml
       - name: Publish html pages
         if: github.ref == 'refs/heads/master'
         shell: pwsh
