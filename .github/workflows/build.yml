@@ -51,4 +51,4 @@ jobs:
           git add --all
           git status
           git commit -m "Update by GitHub Action"
-          git push
+          git push "https://${{ secrets.GITHUB_TOKEN }}@github.com/DFIR-ORC/dfir-orc.github.io.git"
