@@ -39,7 +39,9 @@ html_static_path = ['_static']
 html_css_files = [
     'css/custom.css',
 ]
-
+html_js_files = [
+    'https://code.jquery.com/jquery-3.6.0.min.js',
+]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
